@@ -1,7 +1,8 @@
 package org.blbulyandavbulyan.mergesort;
 
-import org.blbulyandavbulyan.mergesort.processing.args.StartupParameterParser;
-import org.blbulyandavbulyan.mergesort.processing.args.StartupParameters;
+import org.blbulyandavbulyan.mergesort.files.FilesMerger;
+import org.blbulyandavbulyan.mergesort.startupparamters.StartupParameterParser;
+import org.blbulyandavbulyan.mergesort.startupparamters.StartupParameters;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

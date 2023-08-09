@@ -1,6 +1,6 @@
 package org.blbulyandavbulyan.mergesort;
 
-import org.blbulyandavbulyan.mergesort.processing.args.InputDataType;
+import org.blbulyandavbulyan.mergesort.startupparamters.InputDataType;
 
 import java.util.function.Function;
 

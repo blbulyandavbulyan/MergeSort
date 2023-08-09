@@ -1,4 +1,4 @@
-package org.blbulyandavbulyan.mergesort.filelineiteration;
+package org.blbulyandavbulyan.mergesort.files;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

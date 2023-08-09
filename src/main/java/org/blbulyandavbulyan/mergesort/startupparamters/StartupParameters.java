@@ -1,4 +1,4 @@
-package org.blbulyandavbulyan.mergesort.processing.args;
+package org.blbulyandavbulyan.mergesort.startupparamters;
 
 import java.util.ArrayList;
 import java.util.Collection;

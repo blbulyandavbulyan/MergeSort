@@ -1,4 +1,4 @@
-package org.blbulyandavbulyan.mergesort.processing.args;
+package org.blbulyandavbulyan.mergesort.startupparamters;
 
 public class StartupParameterParser {
     public StartupParameters getStartupParameters(String[] args){

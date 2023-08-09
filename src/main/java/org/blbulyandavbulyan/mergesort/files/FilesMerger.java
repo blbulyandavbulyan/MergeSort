@@ -1,6 +1,7 @@
-package org.blbulyandavbulyan.mergesort;
+package org.blbulyandavbulyan.mergesort.files;
 
-import org.blbulyandavbulyan.mergesort.filelineiteration.LineIterator;
+import org.blbulyandavbulyan.mergesort.Merging;
+import org.blbulyandavbulyan.mergesort.files.LineIterator;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
