@@ -2,7 +2,7 @@ package org.blbulyandavbulyan.mergesort.startupparamters;
 
 public class StartupParameterParser {
     public StartupParameters getStartupParameters(String[] args){
-        StartupParameters.StartupParametersBuilder parametersBuilder = new StartupParameters.StartupParametersBuilder();
+        StartupParametersBuilder parametersBuilder = new StartupParametersBuilder();
         boolean inputDataTypeWasSet = false;
         for (String arg : args) {
             switch (arg) {

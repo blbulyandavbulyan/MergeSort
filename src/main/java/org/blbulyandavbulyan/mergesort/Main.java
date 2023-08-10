@@ -14,13 +14,13 @@ public class Main {
     public static void main(String[] args) throws IOException {
         StartupParameters startupParameters = new StartupParameterParser().getStartupParameters(args);
         ConvertorResolver convertorResolver = new ConvertorResolver();
-        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(startupParameters.getOutputFileName()));){
-            new FilesMerger(startupParameters.getInputFilesNames()).mergeFiles(convertorResolver.resolve(startupParameters.getInputDataType()), (Consumer<Object>) t -> {
+        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(startupParameters.outputFileName()));){
+            new FilesMerger(startupParameters.inputFilesNames()).mergeFiles(convertorResolver.resolve(startupParameters.inputDataType()), (Consumer<Object>) t -> {
                 try {
                     bufferedWriter.write(t.toString());
                     bufferedWriter.newLine();
                 } catch (IOException e) {
-                    throw new FileWritingException("Ошибка записи в файл " + startupParameters.getOutputFileName(), e);
+                    throw new FileWritingException("Ошибка записи в файл " + startupParameters.outputFileName(), e);
                 }
             });
         }
