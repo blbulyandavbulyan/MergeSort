@@ -1,4 +1,6 @@
-package org.blbulyandavbulyan.mergesort.files;
+package org.blbulyandavbulyan.mergesort.files.iterator;
+
+import org.blbulyandavbulyan.mergesort.files.iterator.exceptions.FileReadingException;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -12,6 +14,7 @@ import java.util.Iterator;
 public class LineIterator implements Iterator<String>, AutoCloseable {
 
     private final BufferedReader bufferedReader;
+    private final String fileName;
     private boolean closed = false;
 
     /**
@@ -21,6 +24,7 @@ public class LineIterator implements Iterator<String>, AutoCloseable {
      */
     public LineIterator(String fileName) throws FileNotFoundException {
         bufferedReader = new BufferedReader(new FileReader(fileName));
+        this.fileName = fileName;
     }
     @Override
     public boolean hasNext() {
@@ -37,7 +41,7 @@ public class LineIterator implements Iterator<String>, AutoCloseable {
             }
             return false;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new FileReadingException("Ошибка при чтении файла " + fileName, e);
         }
     }
 
@@ -46,11 +50,11 @@ public class LineIterator implements Iterator<String>, AutoCloseable {
         try {
             return bufferedReader.readLine();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new FileReadingException("Ошибка при чтении файла " + fileName, e);
         }
     }
     @Override
-    public void close() throws Exception {
+    public void close() throws IOException {
         if(!closed) {
             bufferedReader.close();
             closed = true;

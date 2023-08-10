@@ -1,33 +1,31 @@
 package org.blbulyandavbulyan.mergesort.files;
 
 import org.blbulyandavbulyan.mergesort.Merging;
-import org.blbulyandavbulyan.mergesort.files.LineIterator;
+import org.blbulyandavbulyan.mergesort.files.iterator.LineIterator;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
-public class FilesMerger {
+public class FilesMerger{
     private final Collection<String> filesNames;
 
     public FilesMerger(Collection<String> filesNames) {
         this.filesNames = filesNames;
     }
 
-    public <T extends Comparable<T>> List<T> mergeFiles(Function<String, T> converter) {
-        List<T> result = new ArrayList<>();
-        List<T> buffer = new ArrayList<>();
-        filesNames.stream().map(fileName -> {
-            try {
-                return new LineIterator(fileName);
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
+    public <T extends Comparable<T>> void mergeFiles(Function<String, T> converter, Consumer<? super T> resultAccumulator) throws FileNotFoundException {
+        List<LineIterator> lineIteratorList = new ArrayList<>();
+        try{
+            for (String fileName : filesNames) {
+                lineIteratorList.add(new LineIterator(fileName));
             }
-        }).forEach(li -> {
-            Merging.merge(() -> new Iterator<T>() {
+            List<Iterator<T>> iterators = lineIteratorList.stream().map(li -> (Iterator<T>)new Iterator<T>() {
                 @Override
                 public boolean hasNext() {
                     return li.hasNext();
@@ -37,11 +35,16 @@ public class FilesMerger {
                 public T next() {
                     return converter.apply(li.next());
                 }
-            }, result, buffer::add);
-            result.clear();
-            result.addAll(buffer);
-            buffer.clear();
-        });
-        return result;
+            }).toList();
+            Merging.merge(resultAccumulator, iterators);
+        }
+        finally {
+            for (LineIterator lineIterator : lineIteratorList){
+                try {
+                    lineIterator.close();
+                } catch (IOException ignored) {
+                }
+            }
+        }
     }
 }
