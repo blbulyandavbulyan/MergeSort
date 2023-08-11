@@ -1,6 +1,14 @@
 package org.blbulyandavbulyan.mergesort.startupparamters;
 
+/**
+ * Данный класс предназначен для обработки аргументов командной строки и формирования объекта с параметрами
+ */
 public class StartupParameterParser {
+    /**
+     * Обрабатывает аргументы командной строки
+     * @param args аргументы командной строки
+     * @return объект, содержащий параметры в удобном для программы представлении
+     */
     public StartupParameters getStartupParameters(String[] args){
         StartupParametersBuilder parametersBuilder = new StartupParametersBuilder();
         boolean inputDataTypeWasSet = false;

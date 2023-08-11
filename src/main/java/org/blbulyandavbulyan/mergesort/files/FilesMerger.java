@@ -12,13 +12,29 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+/**
+ * Данный класс предназначен для слияния всех данных из файлов в один
+ * Порядок сортировки гарантируется, если входные файлы содержали данные в отсортированном порядке
+ */
 public class FilesMerger{
     private final Collection<String> filesNames;
+
+    /**
+     * Создаёт экземпляр данного класса
+     * @param filesNames имена файлов, содержимое которых нужно сливать
+     */
 
     public FilesMerger(Collection<String> filesNames) {
         this.filesNames = filesNames;
     }
 
+    /**
+     * Сливает переданные в конструкторе файлы в общее место
+     * @param converter функция конвертер, которая будет использоваться для трансформации строк в файле
+     * @param resultAccumulator аккумулятор результата, сюда будет попадать очередной объект, полученный в ходе преобразования конвертором из строки в файле
+     * @param <T> тип, который будет возвращаться конвертором и собираемый аккумулятором
+     * @throws FileNotFoundException если файл не найден
+     */
     public <T extends Comparable<T>> void mergeFiles(Function<String, T> converter, Consumer<? super T> resultAccumulator) throws FileNotFoundException {
         List<LineIterator> lineIteratorList = new ArrayList<>();
         try{
