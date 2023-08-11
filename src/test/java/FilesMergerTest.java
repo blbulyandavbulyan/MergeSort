@@ -1,4 +1,5 @@
 import org.blbulyandavbulyan.mergesort.files.FilesMerger;
+import org.blbulyandavbulyan.mergesort.startupparamters.SortMode;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
@@ -28,7 +29,7 @@ public class FilesMergerTest {
             }
         }).sorted().toList();
         List<Integer> actual = new ArrayList<>();
-        filesMerger.mergeFiles(Integer::parseInt, actual::add);
+        filesMerger.mergeFiles(Integer::parseInt, SortMode.ASCENDED, actual::add);
         assertEquals(expected, actual);
     }
 }

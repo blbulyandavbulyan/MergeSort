@@ -2,6 +2,7 @@ package org.blbulyandavbulyan.mergesort.files;
 
 import org.blbulyandavbulyan.mergesort.Merging;
 import org.blbulyandavbulyan.mergesort.files.iterator.LineIterator;
+import org.blbulyandavbulyan.mergesort.startupparamters.SortMode;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -35,7 +36,7 @@ public class FilesMerger{
      * @param <T> тип, который будет возвращаться конвертором и собираемый аккумулятором
      * @throws FileNotFoundException если файл не найден
      */
-    public <T extends Comparable<T>> void mergeFiles(Function<String, T> converter, Consumer<? super T> resultAccumulator) throws FileNotFoundException {
+    public <T extends Comparable<T>> void mergeFiles(Function<String, T> converter, SortMode sortMode, Consumer<? super T> resultAccumulator) throws FileNotFoundException {
         List<LineIterator> lineIteratorList = new ArrayList<>();
         try{
             for (String fileName : filesNames) {
@@ -52,7 +53,7 @@ public class FilesMerger{
                     return converter.apply(li.next());
                 }
             }).toList();
-            Merging.merge(resultAccumulator, iterators);
+            Merging.merge(resultAccumulator, iterators, sortMode);
         }
         finally {
             for (LineIterator lineIterator : lineIteratorList){

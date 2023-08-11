@@ -17,7 +17,7 @@ public class Main {
         StartupParameters startupParameters = new StartupParameterParser().getStartupParameters(args);
         ConvertorResolver convertorResolver = new ConvertorResolver();
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(startupParameters.outputFileName()));){
-            new FilesMerger(startupParameters.inputFilesNames()).mergeFiles(convertorResolver.resolve(startupParameters.inputDataType()), (Consumer<Object>) t -> {
+            new FilesMerger(startupParameters.inputFilesNames()).mergeFiles(convertorResolver.resolve(startupParameters.inputDataType()), startupParameters.sortMode(), (Consumer<Object>) t -> {
                 try {
                     bufferedWriter.write(t.toString());
                     bufferedWriter.newLine();
