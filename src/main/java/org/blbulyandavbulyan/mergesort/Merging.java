@@ -28,11 +28,21 @@ public class Merging {
         }
     }
 
+    /**
+     * Вспомогательный итератор, который берёт управление над другими итераторами, и выдаёт их в отсортированном порядке, как бы сливая их
+     * Необходимо чтобы итераторы давали отсортированные данные
+     * @param <T> тип значения данного итератора, он же тип всех итераторов, переданных ему в конструкторе
+     */
     private static class OverIterator<T extends Comparable<T>> implements Iterator<T> {
         final List<Iterator<T>> iterators;
         private final SortMode sortMode;
         final Map<Iterator<T>, T> iteratorToItsElement;
 
+        /**
+         * Создаёт экземпляр данного итератора
+         * @param iterators итераторы, которые будут использоваться для получения данных
+         * @param sortMode режим сортировки
+         */
         public OverIterator(List<Iterator<T>>  iterators, SortMode sortMode) {
             this.iterators = iterators.stream()
                     .filter(Iterator::hasNext)//берём только итераторы, в которых есть элементы
