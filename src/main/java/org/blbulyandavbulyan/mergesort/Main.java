@@ -1,6 +1,7 @@
 package org.blbulyandavbulyan.mergesort;
 
 import org.blbulyandavbulyan.mergesort.files.FilesMerger;
+import org.blbulyandavbulyan.mergesort.files.exceptions.FileOperationException;
 import org.blbulyandavbulyan.mergesort.files.exceptions.FileReadingException;
 import org.blbulyandavbulyan.mergesort.files.exceptions.FileWritingException;
 import org.blbulyandavbulyan.mergesort.startupparamters.StartupParameterParser;
@@ -30,7 +31,7 @@ public class Main {
             System.err.println("Один из указанных входных файлов не найден!");
             System.err.println(e.getMessage());
         }
-        catch (FileWritingException | FileReadingException e){
+        catch (FileOperationException e){
             System.err.println(e.getMessage());
             System.err.println(e.getCause().getMessage());
         }
