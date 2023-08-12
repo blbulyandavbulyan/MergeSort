@@ -5,7 +5,7 @@ import org.blbulyandavbulyan.mergesort.startupparamters.exceptions.DuplicateType
 /**
  * Данный класс предназначен для обработки аргументов командной строки и формирования объекта с параметрами
  */
-public class StartupParameterParser {
+public class StartupParametersParser {
     /**
      * Обрабатывает аргументы командной строки
      *

@@ -2,9 +2,8 @@ package org.blbulyandavbulyan.mergesort;
 
 import org.blbulyandavbulyan.mergesort.files.FilesMerger;
 import org.blbulyandavbulyan.mergesort.files.exceptions.FileOperationException;
-import org.blbulyandavbulyan.mergesort.files.exceptions.FileReadingException;
 import org.blbulyandavbulyan.mergesort.files.exceptions.FileWritingException;
-import org.blbulyandavbulyan.mergesort.startupparamters.StartupParameterParser;
+import org.blbulyandavbulyan.mergesort.startupparamters.StartupParametersParser;
 import org.blbulyandavbulyan.mergesort.startupparamters.StartupParameters;
 
 import java.io.BufferedWriter;
@@ -15,7 +14,7 @@ import java.util.function.Consumer;
 
 public class Main {
     public static void main(String[] args){
-        StartupParameters startupParameters = new StartupParameterParser().getStartupParameters(args);
+        StartupParameters startupParameters = new StartupParametersParser().getStartupParameters(args);
         ConvertorResolver convertorResolver = new ConvertorResolver();
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(startupParameters.outputFileName()));){
             new FilesMerger(startupParameters.inputFilesNames()).mergeFiles(convertorResolver.resolve(startupParameters.inputDataType()), startupParameters.sortMode(), (Consumer<Object>) t -> {
