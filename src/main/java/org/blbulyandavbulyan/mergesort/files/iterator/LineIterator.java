@@ -26,6 +26,12 @@ public class LineIterator implements Iterator<String>, AutoCloseable {
         bufferedReader = new BufferedReader(new FileReader(fileName));
         this.fileName = fileName;
     }
+
+    /**
+     * Проверяет, есть ли следующая строка в файле
+     * @return true если есть
+     * @throws FileReadingException если при чтении файла произошла ошибка
+     */
     @Override
     public boolean hasNext() {
         try {
@@ -45,6 +51,11 @@ public class LineIterator implements Iterator<String>, AutoCloseable {
         }
     }
 
+    /**
+     * Получает следующую строку из файла
+     * @return следующую строку из файла
+     * @throws FileReadingException если при чтении файла произошла ошибка
+     */
     @Override
     public String next() {
         try {
