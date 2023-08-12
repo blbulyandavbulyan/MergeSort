@@ -1,8 +1,8 @@
 package org.blbulyandavbulyan.mergesort;
 
 import org.blbulyandavbulyan.mergesort.files.FilesMerger;
-import org.blbulyandavbulyan.mergesort.files.iterator.exceptions.FileReadingException;
-import org.blbulyandavbulyan.mergesort.files.iterator.exceptions.FileWritingException;
+import org.blbulyandavbulyan.mergesort.files.exceptions.FileReadingException;
+import org.blbulyandavbulyan.mergesort.files.exceptions.FileWritingException;
 import org.blbulyandavbulyan.mergesort.startupparamters.StartupParameterParser;
 import org.blbulyandavbulyan.mergesort.startupparamters.StartupParameters;
 

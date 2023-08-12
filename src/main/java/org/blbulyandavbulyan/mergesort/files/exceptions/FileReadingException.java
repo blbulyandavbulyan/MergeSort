@@ -1,4 +1,4 @@
-package org.blbulyandavbulyan.mergesort.files.iterator.exceptions;
+package org.blbulyandavbulyan.mergesort.files.exceptions;
 
 /**
  * Данное исключение выбрасывается при ошибке чтения из файла

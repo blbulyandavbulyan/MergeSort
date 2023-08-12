@@ -1,6 +1,6 @@
 package org.blbulyandavbulyan.mergesort.files.iterator;
 
-import org.blbulyandavbulyan.mergesort.files.iterator.exceptions.FileReadingException;
+import org.blbulyandavbulyan.mergesort.files.exceptions.FileReadingException;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
