@@ -41,7 +41,7 @@ public class LineIterator implements Iterator<String>, AutoCloseable {
                     bufferedReader.close();
                     closed = true;
                     return false;
-                };
+                }
                 bufferedReader.reset();
                 return true;
             }
