@@ -22,13 +22,13 @@ public class StartupParametersParser {
                 case "-d" -> parametersBuilder.setSortMode(SortMode.DESCENDED);
                 case "-s" -> {
                     if (inputDataTypeWasSet)
-                        throw new DuplicateTypeArgumentException("Входной тип данных уже был установлен ранее!");// TODO: 07.08.2023 заменить это на конкретное исключение
+                        throw new DuplicateTypeArgumentException("Входной тип данных уже был установлен ранее!");
                     inputDataTypeWasSet = true;
                     parametersBuilder.setInputDataType(InputDataType.STRING);
                 }
                 case "-i" -> {
                     if (inputDataTypeWasSet)
-                        throw new DuplicateTypeArgumentException("Входной тип данных уже был установлен ранее!");// TODO: 07.08.2023 заменить это на конкретное исключение
+                        throw new DuplicateTypeArgumentException("Входной тип данных уже был установлен ранее!");
                     inputDataTypeWasSet = true;
                     parametersBuilder.setInputDataType(InputDataType.INTEGER);
                 }
