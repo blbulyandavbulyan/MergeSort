@@ -19,10 +19,15 @@ public class StartupParameterParser {
                 case "-s" -> {
                     if (inputDataTypeWasSet)
                         throw new RuntimeException("Входной тип данных уже был установлен ранее!");// TODO: 07.08.2023 заменить это на конкретное исключение
-                    parametersBuilder.setInputDataType(InputDataType.STRING);
                     inputDataTypeWasSet = true;
+                    parametersBuilder.setInputDataType(InputDataType.STRING);
                 }
-                case "-i" -> parametersBuilder.setInputDataType(InputDataType.INTEGER);
+                case "-i" -> {
+                    if (inputDataTypeWasSet)
+                        throw new RuntimeException("Входной тип данных уже был установлен ранее!");// TODO: 07.08.2023 заменить это на конкретное исключение
+                    inputDataTypeWasSet = true;
+                    parametersBuilder.setInputDataType(InputDataType.INTEGER);
+                }
                 default -> {
                     if (!parametersBuilder.hasOutputFileName()) {
                         parametersBuilder.setOutputFileName(arg);
