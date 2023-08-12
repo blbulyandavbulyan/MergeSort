@@ -1,6 +1,7 @@
 package org.blbulyandavbulyan.mergesort.files;
 
 import org.blbulyandavbulyan.mergesort.Merging;
+import org.blbulyandavbulyan.mergesort.files.iterator.IteratorConverter;
 import org.blbulyandavbulyan.mergesort.files.iterator.LineIterator;
 import org.blbulyandavbulyan.mergesort.startupparamters.SortMode;
 
@@ -42,17 +43,7 @@ public class FilesMerger{
             for (String fileName : filesNames) {
                 lineIteratorList.add(new LineIterator(fileName));
             }
-            List<Iterator<T>> iterators = lineIteratorList.stream().map(li -> (Iterator<T>)new Iterator<T>() {
-                @Override
-                public boolean hasNext() {
-                    return li.hasNext();
-                }
-
-                @Override
-                public T next() {
-                    return converter.apply(li.next());
-                }
-            }).toList();
+            List<Iterator<T>> iterators = lineIteratorList.stream().map(li -> (Iterator<T>) new IteratorConverter<>(li, converter)).toList();
             Merging.merge(resultAccumulator, iterators, sortMode);
         }
         finally {
@@ -64,4 +55,5 @@ public class FilesMerger{
             }
         }
     }
+
 }
